@@ -14,5 +14,21 @@ public Node(String input){
   }
   public Node getNext(){
     return next;
+  }
+  public Node getPrev(){
+    return prev;
+  }
+  public void setPrev(Node input){
+    prev = input;
+  }
+  public String setData(String input, int index){
+    String ret = data;
+    data= input;
+    return ret;
+  }
+  public String getData(){
+    return data;
+  }
+
 
 }
