@@ -8,4 +8,11 @@ public Node(String input){
   prev= null;
 }
 
+
+  public void setNext(Node input){
+    next = input;
+  }
+  public Node getNext(){
+    return next;
+
 }
