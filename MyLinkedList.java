@@ -15,21 +15,20 @@ public class MyLinkedList{
  public String toString(){
    String ret = "[";
    Node counter= start;
-   if(size==0){
-     return "[]";
-   }
+   if(size()== 0) return "[]";
+   if(size() == 1) return "[" + start.getData() + "]";
    while(counter.getNext() != null){
-     ret+= counter.getValue() + ", ";
+     ret+= counter.getData() + ", ";
      counter = counter.getNext();
    }
-   return ret + counter.getValue() + "]";
+   return ret + counter.getData() + "]";
 }
 
 public boolean add(String input){
   Node newNode= new Node(input);
   if(size==0){
-    start= input;
-    end= input;
+    start= newNode;
+    end= newNode;
     size++;
   }
   else{
@@ -43,6 +42,51 @@ public boolean add(String input){
 }
 
 
+public void add(int index, String input){
+  if(index < 0 || index> size()){
+    throw new IndexOutOfBoundsException("Index" + index + "is out of bounds");
+  }
+  Node newNode = new Node(input);
+if(size() == 0){
+  newNode.setNext(start);
+  start= newNode;
+  end= newNode;
+  size++;
+  }
+  else if (index == size()){
+    add(input);
+  }
+  else if (index == 0){
+    start.setPrev(newNode);
+    newNode.setNext(start);
+    start = newNode;
+    size++;
+  }
+  else{
+    newNode.setNext(getNthNode(index+1));
+    newNode.setPrev(getNthNode(index));
+    newNode.getNext().setPrev(newNode);
+    newNode.getPrev().setNext(newNode);
+    size+=1;
+  }
+}
+  private Node getNthNode(int n){
+    Node counter= start;
+    for(int i=1; i< n; i++){
+      counter= counter.getNext();
+    }
+    return counter;
+  }
+
+  public String get(int index){
+    if(index>= size() || index< 0){
+      throw new IndexOutOfBoundsException("Index"+ index + "is out of bounds");
+    }
+    if(index == 0) return start.getData();
+    if(index == size()) return end.getData();
+    else{
+      return getNthNode(index+1).getData();
+    }
   }
 
 }
