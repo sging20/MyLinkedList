@@ -104,10 +104,6 @@ if(size() == 0){
   }
 
 public void extend(MyLinkedList other){
-  if((size() == 0 && other.size() == 0)){ //both are empty
-    this.start = null;
-    this.end = null;
-  }
   if((size() == 0 && other.size() == 1)){ // first is empty other is 1
     this.start = other.start;
     this.end = other.end;
@@ -116,10 +112,6 @@ public void extend(MyLinkedList other){
     other.start= null;
     other.end= null;
 }
-  if(size()!=0 && other.size() ==0){
-    this.start= this.start;
-    this.end= this.end;
-  }
   if(size()==0 && other.size() !=0){
     this.start= other.start;
     this.end= other.end;
