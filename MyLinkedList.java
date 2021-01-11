@@ -156,4 +156,40 @@ public void extend(MyLinkedList other){
     return ret + current.getData() + "]";
   }
 
+
+  public String remove(int index){
+    if(index>= size() || index <0){
+      throw new IndexOutOfBoundsException("Index" + index +"is out of bounds");
+    }
+    if(size() == 1){
+      String ret= start.getData();
+      start= null;
+      end= null;
+      size--;
+      return ret;
+    }
+    else if(index== size()-1){
+      String ret= end.getData();
+      end.getPrev().setNext(null);
+      size--;
+      end= end.getPrev();
+      return ret;
+    }
+    else if(index== 0){
+      String ret= start.getData();
+      start.getNext().setPrev(null);
+      start = start.getNext();
+      size--;
+      return ret;
+    }
+    else{
+      Node current= getNthNode(index+1);
+      getNthNode(index+1).getPrev().setNext(current.getNext());
+      getNthNode(index+1).getNext().setPrev(current.getPrev());
+      size--;
+      String ret= current.getData();
+      return ret;
+    }
+  }
+
 }
