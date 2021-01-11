@@ -54,7 +54,10 @@ if(size() == 0){
   size++;
   }
   else if (index == size()){
-    add(input);
+    newNode.setPrev(end);
+    newNode.getPrev().setNext(newNode);
+    end= newNode;
+    size+=1;
   }
   else if (index == 0){
     start.setPrev(newNode);
