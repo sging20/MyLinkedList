@@ -21,10 +21,8 @@ public Node(String input){
   public void setPrev(Node input){
     prev = input;
   }
-  public String setData(String input, int index){
-    String ret = data;
+  public void setData(String input){
     data= input;
-    return ret;
   }
   public String getData(){
     return data;
