@@ -89,4 +89,71 @@ if(size() == 0){
     }
   }
 
+  public String set(int index, String value){
+    if(index > size() || index < 0){
+      throw new IndexOutOfBoundsException("Index" + index + "is out of bounds");
+    }
+    else{
+      String ret = getNthNode(index+1).getData();
+      getNthNode(index+1).setData(value);
+      return ret;
+    }
+  }
+
+public void extend(MyLinkedList other){
+  if((size() == 0 && other.size() == 0)){ //both are empty
+    this.start = null;
+    this.end = null;
+  }
+  if((size() == 0 && other.size() == 1)){ // first is empty other is 1
+    this.start = other.start;
+    this.end = other.end;
+    this.size++;
+    other.size= 0;
+    other.start= null;
+    other.end= null;
+}
+  if(size()!=0 && other.size() ==0){
+    this.start= this.start;
+    this.end= this.end;
+  }
+  if(size()==0 && other.size() !=0){
+    this.start= other.start;
+    this.end= other.end;
+    this.size = other.size();
+    other.start= null;
+    other.end= null;
+    other.size = 0;
+  }
+  if(size()==1 && other.size() == 1){
+    this.end.setNext(other.end);
+    other.end.setPrev(this.start);
+    other.start= null;
+    other.end = null;
+    other.size = 0;
+    this.end = other.start;
+    size++;
+  }
+  if(size()!=0 && other.size()!= 0){
+    this.end.setNext(other.start);
+    other.start.setPrev(this.end);
+    this.end= other.end;
+    other.end= null;
+    other.start= null;
+    this.size += other.size();
+    other.size = 0;
+  }
+}
+
+  public String toStringReversed(){
+    Node current = end;
+    if(size()== 0) return "[]";
+    String ret= "[";
+    while(current.getPrev() != null){
+      ret += current.getData() + ", ";
+      current = current.getPrev();
+    }
+    return ret + current.getData() + "]";
+  }
+
 }
